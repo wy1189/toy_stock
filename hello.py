@@ -5,12 +5,15 @@
 
 import yfinance as yf
 import justpy as jp
+import numpy as np
 
 target_markets = ["AMZN"]
 
 Amazon = yf.Ticker("AMZN")
 
 temp = Amazon.history(period="1mo", interval="15m")
+temp['Close (SMA)'] = temp['Close'].rolling(7).mean()
+# temp['Close (SMA)'] = temp['Close (SMA)'].fillna('null')
 temp_tz = temp.index.tz.zone
 print(temp.index[0])
 temp.index = temp.index.strftime("%s").astype(int) * 1000
@@ -37,6 +40,12 @@ chart_options = jp.Dict({
             "x": x,
             "y": temp.loc[x, "Close"],
         } for x in temp.index]
+    }, {
+        "name": "Amazon (SMA)",
+        "data": [{
+            "x": x,
+            "y": temp.loc[x, "Close (SMA)"],
+        } for x in temp.index if not np.isnan(temp.loc[x, "Close (SMA)"])]
     }],
     "xAxis": {
         "type": "datetime",
