@@ -11,10 +11,10 @@ target_markets = ["AMZN"]
 
 Amazon = yf.Ticker("AMZN")
 
-temp = Amazon.history(period="1mo", interval="15m")
+temp = Amazon.history(period="2mo", interval="1d")
 temp['Close (SMA)'] = temp['Close'].rolling(7).mean()
 # temp['Close (SMA)'] = temp['Close (SMA)'].fillna('null')
-temp_tz = temp.index.tz.zone
+temp_tz = temp.index.tz.zone if hasattr(temp.index.tz, "zone") else "US/Central"
 print(temp.index[0])
 temp.index = temp.index.strftime("%s").astype(int) * 1000
 
@@ -59,7 +59,7 @@ chart_options = jp.Dict({
     }
 })
 
-wp = jp.WebPage()
+wp = jp.WebPage(delete_flag=False, tailwind=True, debug=True)
 wp.head_html = """
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.13/moment-timezone-with-data-2012-2022.min.js"></script>
