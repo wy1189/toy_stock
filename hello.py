@@ -11,7 +11,7 @@ target_markets = ["AMZN"]
 
 Amazon = yf.Ticker("AMZN")
 
-temp = Amazon.history(period="2mo", interval="1d")
+temp = Amazon.history(period="3mo", interval="1d")
 temp['Close (SMA)'] = temp['Close'].rolling(7).mean()
 # temp['Close (SMA)'] = temp['Close'].rolling(7, win_type="gaussian").mean(std=temp['Close'].std())
 # temp['Close (SMA)'] = temp['Close (SMA)'].fillna('null')
