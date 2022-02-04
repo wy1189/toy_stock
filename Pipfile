@@ -9,6 +9,8 @@ pandas = "*"
 numpy = "*"
 scipy = "*"
 yfinance = "*"
+pytest = "*"
+lorem = "*"
 
 [dev-packages]
 
