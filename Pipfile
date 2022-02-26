@@ -11,6 +11,8 @@ scipy = "*"
 yfinance = "*"
 pytest = "*"
 lorem = "*"
+redislite = "*"
+hashids = "*"
 
 [dev-packages]
 

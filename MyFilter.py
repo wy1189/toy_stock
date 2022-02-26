@@ -37,24 +37,36 @@ class MyFilter(jp.QDiv):
         c1.dialog = c2
         c1.on("click", self.open_dialog)
         c3 = jp.QCard(a=c2)
-        c4 = jp.QCardSection(a=c3)
-        jp.QDiv(classes="text-h6", text="Alert", a=c4)
-        c5 = jp.QCardSection(a=c3, classes="q-gutter-sm row wrap justify-start items-start content-start")
+        c4 = jp.QCardSection(classes="row justify-between", a=c3)
+        jp.QDiv(classes="text-h6", text="Current Filters", a=c4)
+        jp.QBtn(label="Close", icon="close", a=c4,
+                color="primary", flat=True, round=True, v_close_popup=True)
+        c5 = jp.QCardSection(a=c3, classes="q-gutter-sm col wrap justify-start items-start content-start")
         filter_options = kwargs.get("options", [["test 1", "test 2"]])
         self.filter_list = []
         for option in filter_options:
             self.filter_list.append(
-                jp.QSelect(a=c5, outlined=True, square=True, fill_input=False,
-                           dense=True, clearable=True, use_input=False, item_aligned=True, options_dense=True,
-                           options=option.get("options", []),
-                           label=option.get("label", ""),
-                           multiple=option.get("multiple", False),
-                           style=option.get("style"))
+                jp.QDiv(classes="row justify-start q-ma-md", a=c5).add_component(
+                    jp.QSelect(classes="q-px-md", outlined=True, square=True, fill_input=False,
+                               dense=True, clearable=True, use_input=False, item_aligned=True, options_dense=True,
+                               options=option.get("options", []),
+                               label=option.get("label", ""),
+                               multiple=option.get("multiple", False),
+                               style=option.get("style"),
+                               use_chips=True)
+                ).add_component(
+                    jp.QSelect(classes="q-px-md", outlined=True, square=True, fill_input=False,
+                               dense=True, clearable=True, use_input=False, item_aligned=True, options_dense=True,
+                               options=option.get("options", []),
+                               label=option.get("label", ""),
+                               multiple=option.get("multiple", False),
+                               style=option.get("style"),
+                               use_chips=True)
+                )
             )
         for select in self.filter_list:
             select.on("input", self.align_select)
-        c6 = jp.QCardActions(align="right", a=c3)
-        jp.QBtn(label="OK", color="primary", flat=True, v_close_popup=True, a=c6)
+        # c6 = jp.QCardActions(align="right", a=c3)
 
     @staticmethod
     def open_dialog(self, msg):
@@ -67,7 +79,7 @@ class MyFilter(jp.QDiv):
 
 
 async def dialog_test():
-    wp = jp.QuasarPage()
+    wp = jp.QuasarPage(tailwind=True)
     QDialog(a=wp, classes="q-pa-md q-gutter-sm", label="Alert")
     option_dict = [{
         "label": "test 1",
@@ -78,6 +90,71 @@ async def dialog_test():
         "label": "test 2",
         "options": list(range(1, 11)),
         "multiple": True,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
+        "style": "width: 200px"
+        }, {
+        "label": "test 3",
+        "options": ["abc", "def", "ghi"],
+        "multiple": False,
         "style": "width: 200px"
         }, {
         "label": "test 3",
